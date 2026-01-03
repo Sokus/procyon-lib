@@ -10,8 +10,13 @@
 #define P_MEGABYTES(x) (1024 * P_KILOBYTES(x))
 #define P_GIGABYTES(x) (1024 * P_MEGABYTES(x))
 
+#define P_BIT(x) (1<<(x))
+
 #define P_OFFSET_OF(struct_name, member_name) \
     ((size_t)((char *)&((struct_name *)0)->member_name - (char *)0))
+
+#define P_MASK_SET(var, set, mask) \
+	do { if (set) (var) |= (mask); else (var) &= ~(mask); } while (0)
 
 #if !defined(P_INLINE)
 	#if defined(_MSC_VER)

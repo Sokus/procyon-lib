@@ -2006,27 +2006,39 @@ static inline pVec4 operator-(pVec4 in) {
 
 void __hmm_invalid_generic();
 
-#define p_add(a, b) _Generic((a), \ pVec2: p_vec2_add, \ pVec3: p_vec3_add, \ pVec4: p_vec4_add, \ pMat2: p_mat2_add, \
+#define p_add(a, b) _Generic((a), \
+    pVec2: p_vec2_add, \
+    pVec3: p_vec3_add, \
+    pVec4: p_vec4_add, \
+    pMat2: p_mat2_add, \
     pMat3: p_mat3_add, \
     pMat4: p_mat4_add, \
-    pQuat: p_quat_add   \
+    pQuat: p_quat_add  \
 )(a, b)
 
-#define p_sub(a, b) _Generic((a), \ pVec2: p_vec2_sub, \ pVec3: p_vec3_sub, \ pVec4: p_vec4_sub, \ pMat2: p_mat2_sub, \
+#define p_sub(a, b) _Generic((a), \
+    pVec2: p_vec2_sub, \
+    pVec3: p_vec3_sub, \
+    pVec4: p_vec4_sub, \
+    pMat2: p_mat2_sub, \
     pMat3: p_mat3_sub, \
     pMat4: p_mat4_sub, \
-    pQuat: p_quat_sub   \
+    pQuat: p_quat_sub  \
 )(a, b)
 
-#define p_mul(a, b) _Generic((b), \ float: _Generic((a), \ pVec2: p_vec2_mul_f, \ pVec3: p_vec3_mul_f, \ pVec4: p_vec4_mul_f, \
+#define p_mul(a, b) _Generic((b), \
+    float: _Generic((a), \
+        pVec2: p_vec2_mul_f, \
+        pVec3: p_vec3_mul_f, \
+        pVec4: p_vec4_mul_f, \
         pMat2: p_mat2_mul_f, \
         pMat3: p_mat3_mul_f, \
         pMat4: p_mat4_mul_f, \
-        pQuat: p_quat_mul_f,  \
+        pQuat: p_quat_mul_f, \
         default: __hmm_invalid_generic \
     ), \
     pVec2: _Generic((a), \
-        pVec2: p_vec2_mul,   \
+        pVec2: p_vec2_mul,      \
         pMat2: p_mat2_mul_vec2, \
         default: __hmm_invalid_generic \
     ), \
@@ -2036,21 +2048,25 @@ void __hmm_invalid_generic();
         default: __hmm_invalid_generic \
     ), \
     pVec4: _Generic((a), \
-        pVec4: p_vec4_mul,   \
+        pVec4: p_vec4_mul,      \
         pMat4: p_mat4_mul_vec4, \
         default: __hmm_invalid_generic \
     ), \
     pMat2: p_mat2_mul, \
     pMat3: p_mat3_mul, \
     pMat4: p_mat4_mul, \
-    pQuat: p_quat_mul   \
+    pQuat: p_quat_mul  \
 )(a, b)
 
-#define p_div(a, b) _Generic((b), \ float: _Generic((a), \ pVec2: p_vec2_div_f, \ pVec3: p_vec3_div_f, \ pVec4: p_vec4_div_f, \
+#define p_div(a, b) _Generic((b), \
+    float: _Generic((a), \
+        pVec2: p_vec2_div_f, \
+        pVec3: p_vec3_div_f, \
+        pVec4: p_vec4_div_f, \
         pMat2: p_mat2_div_f, \
         pMat3: p_mat3_div_f, \
         pMat4: p_mat4_div_f, \
-        pQuat: p_quat_div_f   \
+        pQuat: p_quat_div_f  \
     ), \
     pVec2: p_vec2_div, \
     pVec3: p_vec3_div, \
@@ -2069,21 +2085,50 @@ void __hmm_invalid_generic();
     pVec4: p_vec4_len_sqr  \
 )(a)
 
-#define p_norm(a) _Generic((a), \ pVec2: p_vec2_norm, \ pVec3: p_vec3_norm, \ pVec4: p_vec4_norm, \ pQuat: p_quat_norm   \
+#define p_norm(a) _Generic((a), \
+    pVec2: p_vec2_norm, \
+    pVec3: p_vec3_norm, \
+    pVec4: p_vec4_norm, \
+    pQuat: p_quat_norm  \
 )(a)
 
-#define p_dot(a, b) _Generic((a), \ pVec2: p_vec2_dot, \ pVec3: p_vec3_dot, \ pVec4: p_vec4_dot, \ pQuat: p_quat_dot   \
+#define p_dot(a, b) _Generic((a), \
+    pVec2: p_vec2_dot, \
+    pVec3: p_vec3_dot, \
+    pVec4: p_vec4_dot, \
+    pQuat: p_quat_dot  \
 )(a, b)
 
-#define p_lerp(a, T, b) _Generic((a), \ float: p_lerp, \ pVec2: p_lerp_vec2, \ pVec3: p_lerp_vec3, \ pVec4: p_lerp_vec4  \ )(a, T, b)
+#define p_lerp(a, T, b) _Generic((a), \
+    float: p_lerp, \
+    pVec2: p_lerp_vec2, \
+    pVec3: p_lerp_vec3, \
+    pVec4: p_lerp_vec4  \
+)(a, T, b)
 
-#define p_eq(a, b) _Generic((a), \ pVec2: p_vec2_eq, \ pVec3: p_vec3_eq, \ pVec4: p_vec4_eq  \ )(a, b)
+#define p_eq(a, b) _Generic((a), \
+    pVec2: p_vec2_eq, \
+    pVec3: p_vec3_eq, \
+    pVec4: p_vec4_eq  \
+)(a, b)
 
-#define p_transpose(m) _Generic((m), \ pMat2: p_mat2_transpose, \ pMat3: p_mat3_transpose, \ pMat4: p_mat4_transpose  \ )(m)
+#define p_transpose(m) _Generic((m), \
+    pMat2: p_mat2_transpose, \
+    pMat3: p_mat3_transpose, \
+    pMat4: p_mat4_transpose  \
+)(m)
 
-#define p_determinant(m) _Generic((m), \ pMat2: p_mat2_determinant, \ pMat3: p_mat3_determinant, \ pMat4: p_mat4_determinant  \ )(m)
+#define p_determinant(m) _Generic((m), \
+    pMat2: p_mat2_determinant, \
+    pMat3: p_mat3_determinant, \
+    pMat4: p_mat4_determinant  \
+)(m)
 
-#define p_inv_general(m) _Generic((m), \ pMat2: p_mat2_inv_general, \ pMat3: p_mat3_inv_general, \ pMat4: p_mat4_inv_general  \ )(m)
+#define p_inv_general(m) _Generic((m), \
+    pMat2: p_mat2_inv_general, \
+    pMat3: p_mat3_inv_general, \
+    pMat4: p_mat4_inv_general  \
+)(m)
 
 #endif
 
