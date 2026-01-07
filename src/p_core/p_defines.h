@@ -2,7 +2,6 @@
 #define P_DEFINES_HEADER_GUARD
 
 #include <stdint.h>
-#include <stdalign.h>
 
 #define P_COUNT_OF(x) (sizeof(x)/sizeof(x[0]))
 
@@ -27,7 +26,7 @@
 #endif
 
 #ifndef P_DEFAULT_MEMORY_ALIGNMENT
-    #define P_DEFAULT_MEMORY_ALIGNMENT (alignof(max_align_t))
+    #define P_DEFAULT_MEMORY_ALIGNMENT (2*sizeof(void*))
 #endif
 
 #ifndef P_ENDIAN_ORDER
