@@ -141,6 +141,7 @@ extern "C"
 # endif
 #endif
 
+#define P_SIGN(x) ((x) < 0 ? -1 : 1)
 #define P_MIN(a, b) ((a) > (b) ? (b) : (a))
 #define P_MAX(a, b) ((a) < (b) ? (b) : (a))
 #define P_ABS(a) ((a) > 0 ? (a) : -(a))
